@@ -89,9 +89,9 @@ attr_accessor :id, :name , :birth_year
       WHERE
       name = ?
       SQL
-   return nil unless person.length > 0
+   return nil unless data.length > 0
 
-   Playwright.new(person.first)
+   Playwright.new(data.first)
   end
 
 
