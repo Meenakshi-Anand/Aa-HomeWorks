@@ -1,0 +1,9 @@
+<h1>Here are some bands!</h1>
+<a href="<%=new_band_url%>">Create a new Band!</a>
+<ul>
+  <% @bands.each do |band| %>
+  <li>
+    <%= render 'band', template_user: band, template_name: :index , template: :@user %>
+  </li>
+  <% end %>
+</ul>

@@ -1,0 +1,27 @@
+<ul>
+<li>
+  <label for="title">Title:</label>
+  <%= @track.title %>
+</li>
+<li>
+  <label for="ord">Ord:</label>
+  <%= @track.ord%>
+</li>
+<li>
+  <label for="album">Album:</label>
+  <%= @track.album.title%>
+</li>
+<li>
+  <label for="type">Type:</label>
+  <%= @track.track_type%>
+</li>
+<li>
+  <label for="lyrics">Lyrics:</label>
+  <%= @track.lyrics%>
+</li>
+</ul>
+<form  action="<%=track_url%>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"/>
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Track">
+</form>

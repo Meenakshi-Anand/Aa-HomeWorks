@@ -1,0 +1,57 @@
+<% if type == :new %>
+<% action_url = tracks_url%>
+<% button_text = "Create Track!"%>
+<% else %>
+<% action_url = track_url(template_user)%>
+<% button_text = "Update Track!"%>
+<% end  %>
+
+<form action="<%=action_url%>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"/>
+  <% if type == :edit%>
+  <input type="hidden" name="_method" value="patch">
+  <% end %>
+<ul>
+  <li>
+  <label for="title">
+    Title:
+    <input type="text" name="track[title]" value="<%=template_user.title%>">
+  </label>
+</li>
+<li>
+<label for="ord">
+  Ord:
+  <input type="text" name="track[ord]" value="<%=template_user.ord%>">
+</label>
+</li>
+<li>
+  <label for="album">
+    Album:
+    <select name="track[album_id]" id="band">
+    <option></option>
+    <% @albums.each do |album| %>
+      <option
+        <%= template_user.album_id == album.id ? "selected" : "" %>
+        value="<%= album.id %>">
+        <%= album.title %>
+      </option>
+    <% end %>
+  </select>
+  </label>
+</li>
+<li>
+  <input type="radio" name="track[track_type]" value="Regular" id="regular"
+    <%= template_user.track_type == "Regular" ? "checked" : "" %>>
+  <label for="regular">Regular</label>
+  <input type="radio" name="track[track_type]" value="Bonus" id="bonus"
+    <%= template_user.track_type == "Bonus" ? "checked" : "" %>>
+  <label for="bonus">Bonus</label>
+</li>
+<li>
+  <label for="Lyrics">
+    Lyrics:
+    <textarea name="track[lyrics]"><%=template_user.lyrics%></textarea>
+  </label>
+</li>
+  <input type="submit" value="<%= button_text %>">
+</form>

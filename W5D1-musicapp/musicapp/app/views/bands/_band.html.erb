@@ -1,0 +1,23 @@
+
+<% if template_user.albums.length > 0 %>
+<ul>
+  <% template_user.albums.each do |album| %>
+    <li><a href="<%= album_url(album) %>"><p><%= album.title %></p></a></li>
+  <ul>
+    <li>
+      <a href="<%=edit_band_url(template_user)%>">Edit Band</a>
+    </li>
+
+  <li>
+    <form action="<%=band_url(template_user)%>" method="post">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"/>
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" name="" value="Delete Band">
+    </form>
+  </li>
+</ul>
+</ul>
+<% end %>
+<% else %>
+  <p>This band has no albums... yet!</p>
+<% end %>
